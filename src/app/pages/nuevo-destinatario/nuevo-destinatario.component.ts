@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs';
+import { BanksService } from 'src/app/services/banks.service';
 
 @Component({
   selector: 'app-nuevo-destinatario',
@@ -11,9 +13,19 @@ export class NuevoDestinatarioComponent implements OnInit {
   firstFormGroup: FormGroup = new FormGroup({});
   secondFormGroup: FormGroup = new FormGroup({});
   isEditable = false;
-  constructor(private _formBuilder: FormBuilder) { }
+  banks: any[]=[];
+  constructor(private _formBuilder: FormBuilder, private banksServices: BanksService) { }
 
   ngOnInit(): void {
+
+    this.banksServices.getBanks()
+    .subscribe((data : any)=>{
+      console.log(data);
+      this.banks = data.banks;
+    })
+
+
+
     this.firstFormGroup = this._formBuilder.group({
       isvalidRut: ['', [Validators.required,]],
       isvalidNombre: ['', Validators.required],

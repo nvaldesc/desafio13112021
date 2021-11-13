@@ -44,8 +44,7 @@
                 <td><mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Banco</mat-label>
                     <mat-select formControlName="isvalidBanco">
-                      <mat-option value="one">First option</mat-option>
-                      <mat-option value="two">Second option</mat-option>
+                      <mat-option *ngFor="let bank of banks" [value]="bank.id">{{bank.name}}</mat-option>
                     </mat-select>
                   </mat-form-field></td>
 
