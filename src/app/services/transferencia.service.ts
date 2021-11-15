@@ -11,11 +11,11 @@ export class TransferenciaService {
   constructor( private http:HttpClient) { }
 
   getHistorial(){
-    return this.http.get('http://localhost:8080/transferencia/historial');
+    return this.http.get('http://52.22.144.80:8085/transferencia/historial');
   }
 
   saveTransferencia(transferencia: TransferenciaModel){
-    return this.http.post('http://localhost:8080/transferencia/saveTransferencia',
+    return this.http.post('http://52.22.144.80:8085/transferencia/saveTransferencia',
     transferencia,{observe: 'response'});
   }
 }

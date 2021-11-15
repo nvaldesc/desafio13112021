@@ -10,11 +10,11 @@ export class DestinatarioService {
   constructor( private http:HttpClient) { }
 
   getAll(){
-    return this.http.get('http://localhost:8080/destinatarios/getAll');
+    return this.http.get('http://52.22.144.80:8085/destinatarios/getAll');
   }
 
   saveDestinatario(destinatario: DestinatarioModel){
-    return this.http.post('http://localhost:8080/destinatarios/saveDestinatario',
+    return this.http.post('http://52.22.144.80:8085/destinatarios/saveDestinatario',
     destinatario,{observe: 'response'});
   }
 }
