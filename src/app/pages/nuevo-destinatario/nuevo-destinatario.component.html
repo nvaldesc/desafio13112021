@@ -1,0 +1,94 @@
+<mat-card class="example-card">
+
+      <h1 class="text-center font-weight-bold">Nuevo Destinatario</h1>
+
+      <mat-stepper linear #stepper (click)="validaFormDatos()">
+        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Información personal</ng-template>
+    
+            
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>RUT</mat-label>
+                  <input matInput formControlName="rut" placeholder="Ej. 12345678-9">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput formControlName="nombre" placeholder="" required>
+                </mat-form-field></td>
+              </tr></table>
+
+              <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Correo</mat-label>
+                    <input matInput formControlName="correo" type="email" placeholder="ejemplo@dominio.com" >
+                  </mat-form-field></td>
+                  <td><mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="telefono" type="number" placeholder="956111298">
+                  </mat-form-field></td>
+              </tr></table>
+            
+            <div>
+              <button  mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Cuenta Bancaria</ng-template>
+            
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Banco</mat-label>
+                    <mat-select formControlName="banco">
+                      <mat-option *ngFor="let bank of banks" [value]="bank.id">{{bank.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+
+                <td><mat-form-field class="example-full-width"  appearance="fill">
+                    <mat-label>Tipo de Cuenta</mat-label>
+                    <mat-select formControlName="tipoCuenta">
+                      <mat-option *ngFor="let tipCuenta of displayedTipocuenta" [value]="tipCuenta.id">{{tipCuenta.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+
+              </tr></table>
+
+              <table class="example-full-width" cellspacing="0"><tr>
+  
+                <td><mat-form-field  class="example-half-width" appearance="fill">
+                    <mat-label>N de Cuenta</mat-label>
+                    <input matInput  formControlName="numCuenta" type="number" placeholder="123456789012" >
+                  </mat-form-field></td>
+                  
+              </tr></table>
+            
+            
+            <div>
+              <button mat-button matStepperPrevious>Atras</button>
+              <button mat-button (click)="newDestinatario()" matStepperNext>Crear</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Listo!</ng-template>
+          <p>Hemos llegado al final :)</p>
+          <div>
+            <button mat-button matStepperPrevious (click)="stepper.reset()">Crear nuevo destinatario</button>
+            <button mat-button routerLink="/transferir">Transferir</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+
+  </mat-card>
+
+
+
+  
+  
+  
+
+
+

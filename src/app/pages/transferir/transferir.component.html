@@ -1,0 +1,64 @@
+<mat-card class="example-card">
+
+  <h1 class="text-center font-weight-bold">Transferir</h1>
+  <div class="parent">
+
+        <form class="example-form" [formGroup]="myFormGroup">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Buscar destinatario...</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option (click)="seleccionar()" *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option.nombre}} - {{option.bancoDestino.name}} - nº {{option.numCuenta}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+      
+      
+        <h3 class=" font-weight-bold">Detalle del destinatario</h3>
+      
+        <td><mat-form-field  class="example-half-width" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" readonly>
+        </mat-form-field></td>
+      
+        <mat-form-field  class="example-half-width" appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="correo" readonly>
+        </mat-form-field>
+      
+        <td><mat-form-field  class="example-half-width" appearance="outline">
+          <mat-label>Banco</mat-label>
+          <input matInput formControlName="banco" readonly>
+        </mat-form-field></td>
+      
+        <mat-form-field  class="example-half-width" appearance="outline">
+          <mat-label>Tipo de Cuenta</mat-label>
+          <input matInput formControlName="tipoCuenta" readonly>
+        </mat-form-field>
+      
+      
+        <td><mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Monto</mat-label>
+          <input matInput type="number" class="example-right-align" formControlName="monto" placeholder="0">
+          <span matPrefix>$&nbsp;</span>
+        
+        </mat-form-field></td>
+      
+      </form>
+      
+      <div>
+        <button  mat-button (click)="transferir()">Transferir</button>
+      </div>
+    </div>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
