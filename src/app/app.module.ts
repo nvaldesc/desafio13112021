@@ -30,6 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 
@@ -56,7 +58,8 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
 
   ],
   providers: [],

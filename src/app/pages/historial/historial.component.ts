@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { TransferenciaService } from 'src/app/services/transferencia.service';
 
 interface Transaction {
   item: string;
@@ -10,9 +13,14 @@ interface Transaction {
   templateUrl: './historial.component.html',
   styleUrls: ['./historial.component.css']
 })
-export class HistorialComponent implements OnInit {
+export class HistorialComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['item', 'cost'];
+  historial: any;
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  displayedColumns: string[] = ['nombre','rut','banco','tipoCuenta','monto'];
   transactions: Transaction[] = [
     {item: 'Beach ball', cost: 4},
     {item: 'Towel', cost: 5},
@@ -21,14 +29,15 @@ export class HistorialComponent implements OnInit {
     {item: 'Cooler', cost: 25},
     {item: 'Swim suit', cost: 15},
   ];
-  constructor() { }
+  constructor(private transferenciaServices: TransferenciaService) { }
 
-  ngOnInit(): void {
-  }
-
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  ngAfterViewInit(): void {
+    this.transferenciaServices.getHistorial()
+    .subscribe((data : any)=>{
+      this.historial = new MatTableDataSource<any>(data);
+      this.historial.paginator = this.paginator;
+      
+    });
   }
 
 }
